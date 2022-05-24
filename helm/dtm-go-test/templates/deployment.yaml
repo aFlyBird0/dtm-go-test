@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dtm-go-test
+  labels:
+    app: dtm-go-test
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: dtm-go-test
+  template:
+    metadata:
+      labels:
+        app: dtm-go-test
+    spec:
+      containers:
+      - name: dtm-go-test
+        image: "aFlyBird0/dtm-go-test:{{ .Chart.AppVersion }}"
+        ports:
+        - containerPort: 8080
